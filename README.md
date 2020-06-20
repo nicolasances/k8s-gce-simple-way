@@ -5,13 +5,14 @@ The basic setup of the K8S cluster and Calico are taken from [this website](http
 Note that this is **far from being perfect** and there are probably much better ways to achieve the same result with Calico alone or with bare metal load balancers like MetaLB, but I'm really not a networking expert, so this is my solution for now! 
 
 The steps are going to be the following ones: 
-* **[Step 1](01.md)** : creation of the K8S cluster on GCE compute instances (including Calico), using `kubeadm` and creations of some basic services (REST API) <br/>
+* **[Step 1](01.md)** : **creation of the K8S cluster** on GCE compute instances (including Calico), using `kubeadm` and creations of some basic services (REST API) <br/>
 *At this point you'll have a working cluster and the REST APIs will be reachable from within the cluster.*
-* **Step 2** : installing NGINX as an Ingress Controller and exposing it as NodePort and exposing the basic services (REST API) through NGINX Ingress <br/>
+* **[Step 2](02.md)** : **installing NGINX as an Ingress Controller** and exposing it as NodePort and exposing the basic services (REST API) through NGINX Ingress <br/>
 *At this point the REST APIs will be reachable from the internet, using the external IP address of any kubernetes node (worker or controller).*
-* **Step 3**: creating an NGINX Load Balancer external to the cluster to balance the traffic to the cluster nodes <br/>
+* **Step 3**: **creating an NGINX Load Balancer external to the cluster** to balance the traffic to the cluster nodes <br/>
 *At this point the REST APIs will be reachable from the internet, using the external IP address of the compute instance where the NGINX Load Balancer is installed.*
 
+Alright! [Let's start with Step 1](01.md)!)
 
 
 Other links: 
