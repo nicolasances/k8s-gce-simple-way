@@ -1,0 +1,27 @@
+# Persistent Volume to support Mongo
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-toto-mongo
+spec:
+  capacity:
+    storage: 7Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: gcp-disk
+  gcePersistentDisk:
+    pdName: pd-toto-mongo
+---
+# Persistent Volume Claim to claim that volume
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-toto-mongo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 7Gi

@@ -1,0 +1,36 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+    name: kapi-relay
+spec: 
+    selector:
+        ms: kapi-relay
+    ports: 
+        - protocol: TCP
+          port: 8080
+          targetPort: 8080
+---
+# This file defines the K8S Deployment object
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: kapi-relay-dep
+    labels: 
+        ms: kapi-relay
+spec: 
+    replicas: 1
+    revisionHistoryLimit: 0
+    selector:
+        matchLabels:
+            ms: kapi-relay
+    template:
+        metadata:
+            labels: 
+                ms: kapi-relay
+        spec: 
+            containers: 
+                - name: kapi-relay
+                  image: nicolasances/kapi-relay:1.0.0
+                  ports: 
+                    - containerPort: 8080

@@ -1,0 +1,32 @@
+# Mongo Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-depl
+  labels:
+    type: database
+    microservice: toto-mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+        microservice: toto-mongo
+  template:
+    metadata:
+        labels:
+            microservice: toto-mongo
+    spec:
+        containers:
+        - name: mongo
+          image: mongo:4
+          command: ["mongod"]
+          args: ["--dbpath", "/mongo-data", "--bind_ip", "0.0.0.0"]
+          ports:
+          - containerPort: 27017
+          volumeMounts:
+          - name: mongo-pv
+            mountPath: /mongo-data
+        volumes: 
+        - name: mongo-pv
+          persistentVolumeClaim:
+            claimName: pvc-toto-mongo
