@@ -9,7 +9,7 @@ The steps are going to be the following ones:
 *At this point you'll have a working cluster and the REST APIs will be reachable from within the cluster.*
 * **[Step 2](02.md)** : **installing NGINX as an Ingress Controller** and exposing it as NodePort and exposing the basic services (REST API) through NGINX Ingress <br/>
 *At this point the REST APIs will be reachable from the internet, using the external IP address of any kubernetes node (worker or controller).*
-* **Step 3**: **creating an NGINX Load Balancer external to the cluster** to balance the traffic to the cluster nodes <br/>
+* **[Step 3](03.md)**: **creating an NGINX Load Balancer external to the cluster** to balance the traffic to the cluster nodes <br/>
 *At this point the REST APIs will be reachable from the internet, using the external IP address of the compute instance where the NGINX Load Balancer is installed.*
 
 Alright! [Let's start with Step 1](01.md)!)
