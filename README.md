@@ -15,5 +15,12 @@ The steps are going to be the following ones:
 Alright! [Let's start with Step 1](01.md)!)
 
 
-Other links: 
- * [Everything you need to know about K8S on Google Cloud](https://www.projectcalico.org/everything-you-need-to-know-about-kubernetes-networking-on-google-cloud/)
+Useful resources that helped me: 
+ * K8S : [Adding a name to the Kubernetes API Server Certificate](https://blog.scottlowe.org/2019/07/30/adding-a-name-to-kubernetes-api-server-certificate/)
+ * K8S : [Self-managed K8S on GCE](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce)
+ * K8S & NGINX : [Using NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/deploy/)
+ * NGINX : [Configuring NGINX as a Load Balancer](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/)
+ * NGINX : [Controlling NGINX](https://docs.nginx.com/nginx/admin-guide/basic-functionality/runtime-control/)
+ * NGINX : [Installing NGINX on CentOS](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-centos-7)
+ * NGINX : [Soving 502 Bad Gateway](https://stackoverflow.com/questions/23948527/13-permission-denied-while-connecting-to-upstreamnginx)
+ * GCP : [Everything you need to know about K8S on Google Cloud](https://www.projectcalico.org/everything-you-need-to-know-about-kubernetes-networking-on-google-cloud/)
