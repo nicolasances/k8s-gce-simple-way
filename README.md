@@ -16,6 +16,9 @@ The steps are going to be the following ones:
 * **[Step 3](03.md)**: **creating an NGINX Load Balancer external to the cluster** to balance the traffic to the cluster nodes <br/>
 *At this point the REST APIs will be reachable from the internet, using the external IP address of the compute instance where the NGINX Load Balancer is installed.*
 
+If you want to go on...
+* **[Step 4](04-storage.md)**: **attach storage to a Pod using Local Persistent Volumes** and an external GCP Disk
+
 Alright! [Let's start with Step 1](01.md)!)
 
 ## Other guides
