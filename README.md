@@ -1,3 +1,4 @@
+# Kubernetes using GCE in a simple way!
 This is a walkthough on how to create a K8S cluster on Google Compute Engine instances (not using GKE), how to **configure NGINX as an Ingress Controller without Load Balancer being provisioned** and how to configure **external access** so that all services are reachable (through NGINX) by the external world. 
 
 The basic setup of the K8S cluster and Calico are taken from [this website](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce).
