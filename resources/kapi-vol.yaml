@@ -1,0 +1,89 @@
+# Storage Class for the Local Persistent Volume
+# See https://kubernetes.io/blog/2019/04/04/kubernetes-1.14-local-persistent-volumes-ga/#how-to-use-a-local-persistent-volume
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+volumeBindingMode: WaitForFirstConsumer
+---
+# Local Persistent Volume 
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: kdisk-vol
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: local-storage
+  local: 
+    path: /mnt/disks/kdisk
+  nodeAffinity:
+      required: 
+        nodeSelectorTerms: 
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In 
+              values: 
+              - worker-1
+---
+# Persistent Volume Claim to claim that volume
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: kdisk-pvc
+spec:
+  storageClassName: local-storage
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+    name: kapi-vol-svc
+spec: 
+    selector:
+        ms: kapi-vol
+    ports: 
+        - protocol: TCP
+          port: 8080
+          targetPort: 8080
+---
+# This file defines the K8S Deployment object for uppics
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: kapi-vol-dep
+    labels: 
+        ms: kapi-vol
+spec: 
+    replicas: 1
+    revisionHistoryLimit: 0
+    selector:
+        matchLabels:
+            ms: kapi-vol
+    template:
+        metadata:
+            labels: 
+                ms: kapi-vol
+        spec: 
+            containers: 
+                - name: kapi-base
+                  image: nicolasances/kapi-vol:1.0.0
+                  ports: 
+                    - containerPort: 8080
+                  volumeMounts:
+                      - mountPath: /my-data
+                        name: my-vol
+            volumes:
+                - name: my-vol
+                  persistentVolumeClaim:
+                      claimName: kdisk-pvc
