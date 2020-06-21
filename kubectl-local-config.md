@@ -52,7 +52,7 @@ Now you want to add the external IP address of your cluster's controller node `c
 Retrieve that IP address: 
 ```
 gcloud compute instances list --filter=name=controller-0 --format="value(EXTERNAL_IP)"
-````
+```
 
 and now add that address in the yaml file. Under `apiServer`, create (if it doesn't exist) a `certSANs` list: 
 ```
@@ -89,6 +89,7 @@ Then, use kubeadm to generate a new certificate.
 sudo kubeadm init phase certs apiserver --config kubeadm.yaml
 ```
 
+### 2. Configure your local environment
 #### Copy the new admin.conf
 
 Now the new `/etc/kubernetes/admin.conf` file will contain an updated certificate. 
