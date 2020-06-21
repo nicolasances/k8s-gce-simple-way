@@ -14,7 +14,11 @@ The steps are going to be the following ones:
 
 Alright! [Let's start with Step 1](01.md)!)
 
+## Other guides
+These other guides complement this 3 steps guide: 
+ * [Connecting to the cluster using kubectl from your local machine](kubectl-local-config.md)
 
+---
 Useful resources that helped me: 
  * K8S : [Adding a name to the Kubernetes API Server Certificate](https://blog.scottlowe.org/2019/07/30/adding-a-name-to-kubernetes-api-server-certificate/)
  * K8S : [Self-managed K8S on GCE](https://docs.projectcalico.org/getting-started/kubernetes/self-managed-public-cloud/gce)
