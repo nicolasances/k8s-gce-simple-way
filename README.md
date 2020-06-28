@@ -18,6 +18,7 @@ The steps are going to be the following ones:
 
 If you want to go on...
 * **[Step 4](04-storage.md)**: **attach storage to a Pod using Local Persistent Volumes** and an external GCP Disk
+* **[Step 4.b](04-mongo.md)**: **do the same thing but use it to host MongoDB on the cluster** 
 
 Alright! [Let's start with Step 1](01.md)!)
 
