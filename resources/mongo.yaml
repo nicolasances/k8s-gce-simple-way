@@ -1,42 +1,13 @@
-# Persistent Volume to support Mongo
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: pv-toto-mongo
-spec:
-  capacity:
-    storage: 7Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  storageClassName: standard
-  gcePersistentDisk:
-    fsType: ext4
-    pdName: pd-toto-mongo
----
-# Persistent Volume Claim to claim that volume
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pvc-toto-mongo
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 7Gi
----
 # Mongo Service
 # No need for a Load balancer, since mongo is only going to be accessible from within the cluster
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo-srv
+  name: mongo
 spec:
   type: ClusterIP
   selector:
-    microservice: toto-mongo
+    ms: mongo
   ports:
     - port: 27017
       targetPort: 27017
@@ -45,19 +16,18 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mongo-depl
+  name: mongo-dep
   labels:
-    type: database
-    microservice: toto-mongo
+    ms: mongo
 spec:
   replicas: 1
   selector:
     matchLabels:
-        microservice: toto-mongo
+      ms: mongo
   template:
     metadata:
         labels:
-            microservice: toto-mongo
+          ms: mongo
     spec:
         containers:
         - name: mongo
@@ -72,4 +42,4 @@ spec:
         volumes: 
         - name: mongo-pv
           persistentVolumeClaim:
-            claimName: pvc-toto-mongo
+            claimName: kdisk-mongo-pvc

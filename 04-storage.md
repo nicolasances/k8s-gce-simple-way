@@ -135,6 +135,8 @@ kubectl delete pos alpine-1
 ```
 If you `ssh` into `worker-1`, you'll see that under `/mnt/disks/kdisk` there's now a file `helloworld.txt`. It worked!
 
+What's next? <br>
+Why not [installing MongoDB on a cluster using Local Persistent Volumes](04-mongo.md)?
 
 ---
 References: 
