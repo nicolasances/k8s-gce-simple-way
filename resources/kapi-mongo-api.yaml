@@ -1,0 +1,36 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+    name: kapi-mongo-api-svc
+spec: 
+    selector:
+        ms: kapi-mongo-api
+    ports: 
+        - protocol: TCP
+          port: 8080
+          targetPort: 8080
+---
+# This file defines the K8S Deployment object for uppics
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: kapi-mongo-api-dep
+    labels: 
+        ms: kapi-mongo-api
+spec: 
+    replicas: 1
+    revisionHistoryLimit: 0
+    selector:
+        matchLabels:
+            ms: kapi-mongo-api
+    template:
+        metadata:
+            labels: 
+                ms: kapi-mongo-api
+        spec: 
+            containers: 
+                - name: kapi-mongo-api
+                  image: nicolasances/kapi-mongo-api:1.0.0
+                  ports: 
+                    - containerPort: 8080
